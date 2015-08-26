@@ -17,8 +17,6 @@ public class VendingMachine {
         case Quarter
     }
 
-    let products = ["cola" : NSDecimalNumber(string: "1.00")]
-
     public var display: String {
         if let message = messageToDisplay {
             messageToDisplay = nil
@@ -53,7 +51,11 @@ public class VendingMachine {
         }
     }
 
+    // MARK: Memory lifecycle
+
     public init() { }
+
+    // MARK: Private
 
     private func coinValueForCoin(coin: Coin) -> NSDecimalNumber? {
         switch coin {
@@ -69,6 +71,11 @@ public class VendingMachine {
         formatter.numberStyle = .CurrencyStyle
         return formatter.stringFromNumber(value)!
     }
+
+    private let products = [
+        "cola" : NSDecimalNumber(string: "1.00"),
+        "chips" : NSDecimalNumber(string: "0.50"),
+    ]
 
     private var totalValue = NSDecimalNumber(string: "0.00")
     private var messageToDisplay: String?
