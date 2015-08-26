@@ -10,6 +10,7 @@
 		7B667C961B8D7AC80036E98A /* VendingMachine.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B667C951B8D7AC80036E98A /* VendingMachine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B667C9D1B8D7AC80036E98A /* VendingMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B667C921B8D7AC80036E98A /* VendingMachine.framework */; };
 		7B667CA21B8D7AC80036E98A /* VendingMachineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B667CA11B8D7AC80036E98A /* VendingMachineTests.swift */; };
+		7B667CAD1B8D7C3A0036E98A /* VendingMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B667CAC1B8D7C3A0036E98A /* VendingMachine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		7B667C9C1B8D7AC80036E98A /* VendingMachineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VendingMachineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B667CA11B8D7AC80036E98A /* VendingMachineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendingMachineTests.swift; sourceTree = "<group>"; };
 		7B667CA31B8D7AC80036E98A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B667CAC1B8D7C3A0036E98A /* VendingMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendingMachine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 		7B667C941B8D7AC80036E98A /* VendingMachine */ = {
 			isa = PBXGroup;
 			children = (
+				7B667CAC1B8D7C3A0036E98A /* VendingMachine.swift */,
 				7B667C951B8D7AC80036E98A /* VendingMachine.h */,
 				7B667C971B8D7AC80036E98A /* Info.plist */,
 			);
@@ -142,6 +145,7 @@
 		7B667C891B8D7AC80036E98A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "JLT Source";
 				TargetAttributes = {
@@ -193,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B667CAD1B8D7C3A0036E98A /* VendingMachine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +307,7 @@
 		7B667CA71B8D7AC80036E98A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -314,12 +320,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jltsource.VendingMachine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		7B667CA81B8D7AC80036E98A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -376,6 +384,7 @@
 				7B667CA81B8D7AC80036E98A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7B667CA91B8D7AC80036E98A /* Build configuration list for PBXNativeTarget "VendingMachineTests" */ = {
 			isa = XCConfigurationList;
@@ -384,6 +393,7 @@
 				7B667CAB1B8D7AC80036E98A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
