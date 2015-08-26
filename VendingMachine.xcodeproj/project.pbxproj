@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		7B667C961B8D7AC80036E98A /* VendingMachine.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B667C951B8D7AC80036E98A /* VendingMachine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B667C9D1B8D7AC80036E98A /* VendingMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B667C921B8D7AC80036E98A /* VendingMachine.framework */; };
-		7B667CA21B8D7AC80036E98A /* VendingMachineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B667CA11B8D7AC80036E98A /* VendingMachineTests.swift */; };
+		7B667CA21B8D7AC80036E98A /* VendingMachineAcceptCoinsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B667CA11B8D7AC80036E98A /* VendingMachineAcceptCoinsTests.swift */; };
 		7B667CAD1B8D7C3A0036E98A /* VendingMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B667CAC1B8D7C3A0036E98A /* VendingMachine.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +28,7 @@
 		7B667C951B8D7AC80036E98A /* VendingMachine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VendingMachine.h; sourceTree = "<group>"; };
 		7B667C971B8D7AC80036E98A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B667C9C1B8D7AC80036E98A /* VendingMachineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VendingMachineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B667CA11B8D7AC80036E98A /* VendingMachineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendingMachineTests.swift; sourceTree = "<group>"; };
+		7B667CA11B8D7AC80036E98A /* VendingMachineAcceptCoinsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendingMachineAcceptCoinsTests.swift; sourceTree = "<group>"; };
 		7B667CA31B8D7AC80036E98A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B667CAC1B8D7C3A0036E98A /* VendingMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendingMachine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,7 +83,7 @@
 		7B667CA01B8D7AC80036E98A /* VendingMachineTests */ = {
 			isa = PBXGroup;
 			children = (
-				7B667CA11B8D7AC80036E98A /* VendingMachineTests.swift */,
+				7B667CA11B8D7AC80036E98A /* VendingMachineAcceptCoinsTests.swift */,
 				7B667CA31B8D7AC80036E98A /* Info.plist */,
 			);
 			path = VendingMachineTests;
@@ -205,7 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B667CA21B8D7AC80036E98A /* VendingMachineTests.swift in Sources */,
+				7B667CA21B8D7AC80036E98A /* VendingMachineAcceptCoinsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

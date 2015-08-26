@@ -1,5 +1,5 @@
 //
-//  VendingMachineTests.swift
+//  VendingMachineAcceptCoinsTests.swift
 //  VendingMachineTests
 //
 //  Created by Jeffery Thomas on 8/26/15.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import VendingMachine
 
-class VendingMachineTests: XCTestCase {
+class VendingMachineAcceptCoinsTests: XCTestCase {
 
     var vendingMachine = VendingMachine()
 
