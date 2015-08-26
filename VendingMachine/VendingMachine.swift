@@ -17,8 +17,13 @@ public class VendingMachine {
         case Quarter
     }
 
+    let products = ["cola" : NSDecimalNumber(string: "1.00")]
+
     public var display: String {
-        if totalValue == NSDecimalNumber(string: "0.00") {
+        if hasSelectedProduct {
+            hasSelectedProduct = false
+            return "THANK YOU"
+        } else if totalValue == NSDecimalNumber(string: "0.00") {
             return "INSERT COIN"
         } else {
             let formatter = NSNumberFormatter()
@@ -37,6 +42,17 @@ public class VendingMachine {
         }
     }
 
+    public func selectProductWithName(name: String) {
+        guard let productCost = products[name] else {
+            return
+        }
+
+        if totalValue.isGreaterThanOrEqualTo(productCost) {
+            hasSelectedProduct = true
+            totalValue = NSDecimalNumber(string: "0.00")
+        }
+    }
+
     public init() { }
 
     private func coinValueForCoin(coin: Coin) -> NSDecimalNumber? {
@@ -49,5 +65,6 @@ public class VendingMachine {
     }
 
     private var totalValue = NSDecimalNumber(string: "0.00")
+    private var hasSelectedProduct = false
 
 }
