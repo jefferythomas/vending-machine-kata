@@ -11,9 +11,13 @@ import XCTest
 
 class VendingMachineTests: XCTestCase {
 
+    var vendingMachine = VendingMachine()
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+
+        vendingMachine = VendingMachine()
     }
 
     override func tearDown() {
@@ -22,19 +26,21 @@ class VendingMachineTests: XCTestCase {
     }
 
     func testReturnUnknownCoin() {
-        let vendingMachine = VendingMachine()
-
         vendingMachine.addCoin(.Unknown)
         XCTAssertEqual(vendingMachine.display, "$0.00")
         XCTAssertEqual(vendingMachine.coinReturnCount, 1)
     }
 
     func testAcceptNickel() {
-        let vendingMachine = VendingMachine()
-
         vendingMachine.addCoin(.Nickel)
         XCTAssertEqual(vendingMachine.display, "$0.05")
         XCTAssertEqual(vendingMachine.coinReturnCount, 0)
     }
-    
+
+    func testAcceptDime() {
+        vendingMachine.addCoin(.Dime)
+        XCTAssertEqual(vendingMachine.display, "$0.10")
+        XCTAssertEqual(vendingMachine.coinReturnCount, 0)
+    }
+
 }

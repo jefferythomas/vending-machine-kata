@@ -13,6 +13,7 @@ public class VendingMachine {
     public enum Coin {
         case Unknown
         case Nickel
+        case Dime
     }
 
     public var display: String {
@@ -36,6 +37,7 @@ public class VendingMachine {
     private func coinValueForCoin(coin: Coin) -> NSDecimalNumber? {
         switch coin {
         case .Nickel: return NSDecimalNumber(string: "0.05")
+        case .Dime: return NSDecimalNumber(string: "0.10")
         default: return nil
         }
     }
