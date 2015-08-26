@@ -18,6 +18,24 @@ class VendingMachineSelectProductTests: XCTestCase {
         vendingMachine = VendingMachine()
     }
 
+    func testSelectColaWithNoMoney() {
+        vendingMachine.selectProductWithName("cola")
+
+        XCTAssertEqual(vendingMachine.display, "PRICE $1.00")
+        XCTAssertEqual(vendingMachine.display, "INSERT COIN")
+        XCTAssertEqual(vendingMachine.coinReturnCount, 0)
+    }
+
+    func testSelectColaWithNotEnoughMoney() {
+        vendingMachine.addCoin(.Quarter)
+
+        vendingMachine.selectProductWithName("cola")
+
+        XCTAssertEqual(vendingMachine.display, "PRICE $1.00")
+        XCTAssertEqual(vendingMachine.display, "$0.25")
+        XCTAssertEqual(vendingMachine.coinReturnCount, 0)
+    }
+
     func testSelectCola() {
         vendingMachine.addCoin(.Quarter)
         vendingMachine.addCoin(.Quarter)

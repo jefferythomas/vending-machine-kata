@@ -20,15 +20,13 @@ public class VendingMachine {
     let products = ["cola" : NSDecimalNumber(string: "1.00")]
 
     public var display: String {
-        if hasSelectedProduct {
-            hasSelectedProduct = false
-            return "THANK YOU"
+        if let message = messageToDisplay {
+            messageToDisplay = nil
+            return message
         } else if totalValue == NSDecimalNumber(string: "0.00") {
             return "INSERT COIN"
         } else {
-            let formatter = NSNumberFormatter()
-            formatter.numberStyle = .CurrencyStyle
-            return formatter.stringFromNumber(totalValue)!
+            return stringFromValue(totalValue)
         }
     }
 
@@ -43,12 +41,14 @@ public class VendingMachine {
     }
 
     public func selectProductWithName(name: String) {
-        guard let productCost = products[name] else {
+        guard let productPrice = products[name] else {
             return
         }
 
-        if totalValue.isGreaterThanOrEqualTo(productCost) {
-            hasSelectedProduct = true
+        if totalValue.isLessThan(productPrice) {
+            messageToDisplay = "PRICE \(stringFromValue(productPrice))"
+        } else {
+            messageToDisplay = "THANK YOU"
             totalValue = NSDecimalNumber(string: "0.00")
         }
     }
@@ -64,7 +64,13 @@ public class VendingMachine {
         }
     }
 
+    private func stringFromValue(value: NSDecimalNumber) -> String {
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+        return formatter.stringFromNumber(value)!
+    }
+
     private var totalValue = NSDecimalNumber(string: "0.00")
-    private var hasSelectedProduct = false
+    private var messageToDisplay: String?
 
 }
