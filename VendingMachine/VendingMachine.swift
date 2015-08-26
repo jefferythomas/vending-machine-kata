@@ -75,6 +75,7 @@ public class VendingMachine {
     private let products = [
         "cola" : NSDecimalNumber(string: "1.00"),
         "chips" : NSDecimalNumber(string: "0.50"),
+        "candy" : NSDecimalNumber(string: "0.65"),
     ]
 
     private var totalValue = NSDecimalNumber(string: "0.00")
