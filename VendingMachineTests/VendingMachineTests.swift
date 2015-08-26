@@ -15,14 +15,7 @@ class VendingMachineTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
         vendingMachine = VendingMachine()
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
 
     func testNoCoinsInVendingMachine() {
@@ -32,26 +25,40 @@ class VendingMachineTests: XCTestCase {
 
     func testReturnUnknownCoin() {
         vendingMachine.addCoin(.Unknown)
+
         XCTAssertEqual(vendingMachine.display, "INSERT COIN")
         XCTAssertEqual(vendingMachine.coinReturnCount, 1)
     }
 
     func testAcceptNickel() {
         vendingMachine.addCoin(.Nickel)
+
         XCTAssertEqual(vendingMachine.display, "$0.05")
         XCTAssertEqual(vendingMachine.coinReturnCount, 0)
     }
 
     func testAcceptDime() {
         vendingMachine.addCoin(.Dime)
+
         XCTAssertEqual(vendingMachine.display, "$0.10")
         XCTAssertEqual(vendingMachine.coinReturnCount, 0)
     }
 
     func testAcceptQuarter() {
         vendingMachine.addCoin(.Quarter)
+
         XCTAssertEqual(vendingMachine.display, "$0.25")
         XCTAssertEqual(vendingMachine.coinReturnCount, 0)
+    }
+
+    func testAcceptMultipleCoins() {
+        vendingMachine.addCoin(.Nickel)
+        vendingMachine.addCoin(.Dime)
+        vendingMachine.addCoin(.Quarter)
+        vendingMachine.addCoin(.Unknown)
+
+        XCTAssertEqual(vendingMachine.display, "$0.40")
+        XCTAssertEqual(vendingMachine.coinReturnCount, 1)
     }
 
 }
