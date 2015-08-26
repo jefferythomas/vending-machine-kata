@@ -25,9 +25,14 @@ class VendingMachineTests: XCTestCase {
         super.tearDown()
     }
 
+    func testNoCoinsInVendingMachine() {
+        XCTAssertEqual(vendingMachine.display, "INSERT COIN")
+        XCTAssertEqual(vendingMachine.coinReturnCount, 0)
+    }
+
     func testReturnUnknownCoin() {
         vendingMachine.addCoin(.Unknown)
-        XCTAssertEqual(vendingMachine.display, "$0.00")
+        XCTAssertEqual(vendingMachine.display, "INSERT COIN")
         XCTAssertEqual(vendingMachine.coinReturnCount, 1)
     }
 

@@ -18,9 +18,13 @@ public class VendingMachine {
     }
 
     public var display: String {
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .CurrencyStyle
-        return formatter.stringFromNumber(totalValue)!
+        if totalValue == NSDecimalNumber(string: "0.00") {
+            return "INSERT COIN"
+        } else {
+            let formatter = NSNumberFormatter()
+            formatter.numberStyle = .CurrencyStyle
+            return formatter.stringFromNumber(totalValue)!
+        }
     }
 
     public private(set) var coinReturnCount = 0
