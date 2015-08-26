@@ -14,6 +14,7 @@ public class VendingMachine {
         case Unknown
         case Nickel
         case Dime
+        case Quarter
     }
 
     public var display: String {
@@ -38,6 +39,7 @@ public class VendingMachine {
         switch coin {
         case .Nickel: return NSDecimalNumber(string: "0.05")
         case .Dime: return NSDecimalNumber(string: "0.10")
+        case .Quarter: return NSDecimalNumber(string: "0.25")
         default: return nil
         }
     }

@@ -43,4 +43,10 @@ class VendingMachineTests: XCTestCase {
         XCTAssertEqual(vendingMachine.coinReturnCount, 0)
     }
 
+    func testAcceptQuarter() {
+        vendingMachine.addCoin(.Quarter)
+        XCTAssertEqual(vendingMachine.display, "$0.25")
+        XCTAssertEqual(vendingMachine.coinReturnCount, 0)
+    }
+
 }
