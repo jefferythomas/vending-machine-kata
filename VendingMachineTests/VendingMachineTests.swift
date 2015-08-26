@@ -10,17 +10,25 @@ import XCTest
 @testable import VendingMachine
 
 class VendingMachineTests: XCTestCase {
-    
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
+    func testReturnUnknownCoin() {
+        let vendingMachine = VendingMachine()
+
+        vendingMachine.addCoin(.Unknown)
+        XCTAssertEqual(vendingMachine.display, "$0.00")
+        XCTAssertEqual(vendingMachine.coinReturnCount, 1)
+    }
+
     func testAcceptNickel() {
         let vendingMachine = VendingMachine()
 
@@ -28,5 +36,5 @@ class VendingMachineTests: XCTestCase {
         XCTAssertEqual(vendingMachine.display, "$0.05")
         XCTAssertEqual(vendingMachine.coinReturnCount, 0)
     }
-
+    
 }

@@ -15,7 +15,11 @@ public class VendingMachine {
         case Nickel
     }
 
-    public var display: String { return "$\(totalValue)" }
+    public var display: String {
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+        return formatter.stringFromNumber(totalValue)!
+    }
 
     public private(set) var coinReturnCount = 0
 
