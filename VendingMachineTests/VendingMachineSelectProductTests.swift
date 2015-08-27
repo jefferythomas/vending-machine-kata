@@ -23,7 +23,7 @@ class VendingMachineSelectProductTests: XCTestCase {
 
         XCTAssertEqual(vendingMachine.display, "PRICE $1.00")
         XCTAssertEqual(vendingMachine.display, "INSERT COIN")
-        XCTAssertEqual(vendingMachine.coinReturnCount, 0)
+        XCTAssertEqual(vendingMachine.coinsInCoinReturn, [])
     }
 
     func testSelectColaWithNotEnoughMoney() {
@@ -33,7 +33,7 @@ class VendingMachineSelectProductTests: XCTestCase {
 
         XCTAssertEqual(vendingMachine.display, "PRICE $1.00")
         XCTAssertEqual(vendingMachine.display, "$0.25")
-        XCTAssertEqual(vendingMachine.coinReturnCount, 0)
+        XCTAssertEqual(vendingMachine.coinsInCoinReturn, [])
     }
 
     func testSelectCola() {
@@ -46,7 +46,7 @@ class VendingMachineSelectProductTests: XCTestCase {
 
         XCTAssertEqual(vendingMachine.display, "THANK YOU")
         XCTAssertEqual(vendingMachine.display, "INSERT COIN")
-        XCTAssertEqual(vendingMachine.coinReturnCount, 0)
+        XCTAssertEqual(vendingMachine.coinsInCoinReturn, [])
     }
 
     func testSelectChips() {
@@ -57,7 +57,7 @@ class VendingMachineSelectProductTests: XCTestCase {
 
         XCTAssertEqual(vendingMachine.display, "THANK YOU")
         XCTAssertEqual(vendingMachine.display, "INSERT COIN")
-        XCTAssertEqual(vendingMachine.coinReturnCount, 0)
+        XCTAssertEqual(vendingMachine.coinsInCoinReturn, [])
     }
 
     func testSelectCandy() {
@@ -70,7 +70,7 @@ class VendingMachineSelectProductTests: XCTestCase {
 
         XCTAssertEqual(vendingMachine.display, "THANK YOU")
         XCTAssertEqual(vendingMachine.display, "INSERT COIN")
-        XCTAssertEqual(vendingMachine.coinReturnCount, 0)
+        XCTAssertEqual(vendingMachine.coinsInCoinReturn, [])
     }
 
 }

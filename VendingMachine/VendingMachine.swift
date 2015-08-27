@@ -28,26 +28,22 @@ public class VendingMachine {
         }
     }
 
-    public var coinReturnCount: Int {
-        return coinsInReturn.count
-    }
+    public private(set) var coinsInCoinReturn = [Coin]()
 
-    public var coinReturnValue: String {
-        return stringFromValue(coinsInReturn.reduce(NSDecimalNumber.zero()) {
-            $0 + (coinValueForCoin($1) ?? NSDecimalNumber.zero())
-        })
+    public var coinReturnCount: Int {
+        return coinsInCoinReturn.count
     }
 
     public func addCoin(coin: Coin) {
         if let coinValue = coinValueForCoin(coin) {
             totalValue = totalValue + coinValue
         } else {
-            coinsInReturn.append(coin)
+            coinsInCoinReturn.append(coin)
         }
     }
 
     public func selectProductWithName(name: String) {
-        coinsInReturn = []
+        coinsInCoinReturn = []
 
         guard let productPrice = products[name] else {
             return
@@ -57,7 +53,7 @@ public class VendingMachine {
             messageToDisplay = "PRICE \(stringFromValue(productPrice))"
         } else {
             messageToDisplay = "THANK YOU"
-            coinsInReturn = coinsForValue(totalValue - productPrice)
+            coinsInCoinReturn = coinsForValue(totalValue - productPrice)
             totalValue = NSDecimalNumber.zero()
         }
     }
@@ -130,6 +126,5 @@ public class VendingMachine {
 
     private var totalValue = NSDecimalNumber.zero()
     private var messageToDisplay: String?
-    private var coinsInReturn = [Coin]()
 
 }

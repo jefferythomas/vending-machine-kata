@@ -20,35 +20,35 @@ class VendingMachineAcceptCoinsTests: XCTestCase {
 
     func testNoCoinsInVendingMachine() {
         XCTAssertEqual(vendingMachine.display, "INSERT COIN")
-        XCTAssertEqual(vendingMachine.coinReturnCount, 0)
+        XCTAssertEqual(vendingMachine.coinsInCoinReturn, [])
     }
 
     func testReturnUnknownCoin() {
         vendingMachine.addCoin(.Unknown)
 
         XCTAssertEqual(vendingMachine.display, "INSERT COIN")
-        XCTAssertEqual(vendingMachine.coinReturnCount, 1)
+        XCTAssertEqual(vendingMachine.coinsInCoinReturn, [.Unknown])
     }
 
     func testAcceptNickel() {
         vendingMachine.addCoin(.Nickel)
 
         XCTAssertEqual(vendingMachine.display, "$0.05")
-        XCTAssertEqual(vendingMachine.coinReturnCount, 0)
+        XCTAssertEqual(vendingMachine.coinsInCoinReturn, [])
     }
 
     func testAcceptDime() {
         vendingMachine.addCoin(.Dime)
 
         XCTAssertEqual(vendingMachine.display, "$0.10")
-        XCTAssertEqual(vendingMachine.coinReturnCount, 0)
+        XCTAssertEqual(vendingMachine.coinsInCoinReturn, [])
     }
 
     func testAcceptQuarter() {
         vendingMachine.addCoin(.Quarter)
 
         XCTAssertEqual(vendingMachine.display, "$0.25")
-        XCTAssertEqual(vendingMachine.coinReturnCount, 0)
+        XCTAssertEqual(vendingMachine.coinsInCoinReturn, [])
     }
 
     func testAcceptMultipleCoins() {
@@ -58,7 +58,7 @@ class VendingMachineAcceptCoinsTests: XCTestCase {
         vendingMachine.addCoin(.Unknown)
 
         XCTAssertEqual(vendingMachine.display, "$0.40")
-        XCTAssertEqual(vendingMachine.coinReturnCount, 1)
+        XCTAssertEqual(vendingMachine.coinsInCoinReturn, [.Unknown])
     }
 
 }
