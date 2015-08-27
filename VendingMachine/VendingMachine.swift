@@ -21,24 +21,34 @@ public class VendingMachine {
         if let message = messageToDisplay {
             messageToDisplay = nil
             return message
-        } else if totalValue == NSDecimalNumber(string: "0.00") {
+        } else if totalValue == NSDecimalNumber.zero() {
             return "INSERT COIN"
         } else {
             return stringFromValue(totalValue)
         }
     }
 
-    public private(set) var coinReturnCount = 0
+    public var coinReturnCount: Int {
+        return coinsInReturn.count
+    }
+
+    public var coinReturnValue: String {
+        return stringFromValue(coinsInReturn.reduce(NSDecimalNumber.zero()) {
+            $0 + (coinValueForCoin($1) ?? NSDecimalNumber.zero())
+        })
+    }
 
     public func addCoin(coin: Coin) {
         if let coinValue = coinValueForCoin(coin) {
-            totalValue = totalValue.decimalNumberByAdding(coinValue)
+            totalValue = totalValue + coinValue
         } else {
-            ++coinReturnCount
+            coinsInReturn.append(coin)
         }
     }
 
     public func selectProductWithName(name: String) {
+        coinsInReturn = []
+
         guard let productPrice = products[name] else {
             return
         }
@@ -47,7 +57,8 @@ public class VendingMachine {
             messageToDisplay = "PRICE \(stringFromValue(productPrice))"
         } else {
             messageToDisplay = "THANK YOU"
-            totalValue = NSDecimalNumber(string: "0.00")
+            coinsInReturn = coinsForValue(totalValue - productPrice)
+            totalValue = NSDecimalNumber.zero()
         }
     }
 
@@ -57,11 +68,46 @@ public class VendingMachine {
 
     // MARK: Private
 
+    private func coinsForValue(value: NSDecimalNumber) -> [Coin] {
+        var result = [Coin]()
+        var currentValue = NSDecimalNumber.zero()
+
+        while currentValue + valueForQuarter <= value {
+            result.append(.Quarter)
+            currentValue = currentValue + valueForQuarter
+
+            if currentValue == value {
+                return result
+            }
+        }
+
+        while currentValue + valueForDime <= value {
+            result.append(.Dime)
+            currentValue = currentValue + valueForDime
+
+            if currentValue == value {
+                return result
+            }
+        }
+
+        while currentValue + valueForNickel <= value {
+            result.append(.Nickel)
+            currentValue = currentValue + valueForNickel
+
+            if currentValue == value {
+                return result
+            }
+        }
+
+        assert(currentValue == value)
+        return result
+    }
+
     private func coinValueForCoin(coin: Coin) -> NSDecimalNumber? {
         switch coin {
-        case .Nickel: return NSDecimalNumber(string: "0.05")
-        case .Dime: return NSDecimalNumber(string: "0.10")
-        case .Quarter: return NSDecimalNumber(string: "0.25")
+        case .Nickel: return valueForNickel
+        case .Dime: return valueForDime
+        case .Quarter: return valueForQuarter
         default: return nil
         }
     }
@@ -78,7 +124,12 @@ public class VendingMachine {
         "candy" : NSDecimalNumber(string: "0.65"),
     ]
 
-    private var totalValue = NSDecimalNumber(string: "0.00")
+    let valueForNickel = NSDecimalNumber(string: "0.05")
+    let valueForDime = NSDecimalNumber(string: "0.10")
+    let valueForQuarter = NSDecimalNumber(string: "0.25")
+
+    private var totalValue = NSDecimalNumber.zero()
     private var messageToDisplay: String?
+    private var coinsInReturn = [Coin]()
 
 }
