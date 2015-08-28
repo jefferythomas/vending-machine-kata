@@ -16,9 +16,6 @@ public enum Coin {
 }
 
 private let zeroAmount = NSDecimalNumber.zero()
-private let nickelAmount = NSDecimalNumber(string: "0.05")
-private let dimeAmount = NSDecimalNumber(string: "0.10")
-private let quarterAmount = NSDecimalNumber(string: "0.25")
 
 public class VendingMachine {
 
@@ -36,15 +33,17 @@ public class VendingMachine {
     public private(set) var coinsInCoinReturn = [Coin]()
 
     public func addCoin(coin: Coin) {
-        if let amount = amountForCoin(coin) {
-            totalAmount = totalAmount + amount
-        } else {
+        guard let amount = amountForCoin(coin) else {
+            // Reject the coin by putting it in the coin return.
             coinsInCoinReturn.append(coin)
+            return
         }
+
+        totalAmount = totalAmount + amount
     }
 
     public func selectProductWithName(name: String) {
-        coinsInCoinReturn = []
+        coinsInCoinReturn = [] // Assume the coin return was cleared before selecting a product
 
         guard let productPrice = products[name] else {
             assert(false, "\(name) is not a valid product name")
@@ -71,47 +70,45 @@ public class VendingMachine {
     }
 
     private func coinsForAmount(amount: NSDecimalNumber) -> [Coin] {
-        var coins = [Coin]()
-        var currentAmount = zeroAmount
+        var remainingAmount = amount
 
-        while currentAmount + quarterAmount <= amount {
-            coins.append(.Quarter)
-            currentAmount = currentAmount + quarterAmount
+        let numberOfQuarters = numberOfCoinsInAmount(remainingAmount, forCoin: .Quarter)
+        remainingAmount = remainingAmount - amountForCoin(.Quarter, count: numberOfQuarters)!
 
-            if currentAmount == amount {
-                break
-            }
-        }
+        let numberOfDimes = numberOfCoinsInAmount(remainingAmount, forCoin: .Dime)
+        remainingAmount = remainingAmount - amountForCoin(.Dime, count: numberOfDimes)!
 
-        while currentAmount + dimeAmount <= amount {
-            coins.append(.Dime)
-            currentAmount = currentAmount + dimeAmount
+        let numberOfNickels = numberOfCoinsInAmount(remainingAmount, forCoin: .Nickel)
+        remainingAmount = remainingAmount - amountForCoin(.Nickel, count: numberOfNickels)!
 
-            if currentAmount == amount {
-                break
-            }
-        }
+        assert(remainingAmount == zeroAmount, "could not return exact change for \(amount)")
 
-        while currentAmount + nickelAmount <= amount {
-            coins.append(.Nickel)
-            currentAmount = currentAmount + nickelAmount
+        return (
+            [Coin](count: numberOfQuarters, repeatedValue: .Quarter) +
+            [Coin](count: numberOfDimes, repeatedValue: .Dime) +
+            [Coin](count: numberOfNickels, repeatedValue: .Nickel)
+        )
+    }
 
-            if currentAmount == amount {
-                break
-            }
-        }
-
-        assert(currentAmount == amount, "could not return exact change for \(amount)")
-        return coins
+    private func numberOfCoinsInAmount(amount: NSDecimalNumber, forCoin coin: Coin) -> Int {
+        return (amount / amountForCoin(coin)!).integerValue
     }
 
     private func amountForCoin(coin: Coin) -> NSDecimalNumber? {
         switch coin {
-        case .Nickel: return nickelAmount
-        case .Dime: return dimeAmount
-        case .Quarter: return quarterAmount
+        case .Nickel: return NSDecimalNumber(string: "0.05")
+        case .Dime: return NSDecimalNumber(string: "0.10")
+        case .Quarter: return NSDecimalNumber(string: "0.25")
         default: return nil
         }
+    }
+
+    private func amountForCoin(coin: Coin, count: Int) -> NSDecimalNumber? {
+        guard let coinAmount = amountForCoin(coin) else {
+            return nil
+        }
+
+        return NSDecimalNumber(integer: count) * coinAmount
     }
 
     private func stringFromAmount(amount: NSDecimalNumber) -> String {
