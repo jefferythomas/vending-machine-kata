@@ -59,6 +59,11 @@ public class VendingMachine {
         }
     }
 
+    public func returnCoins() {
+        coinsInCoinReturn = coinsForAmount(totalAmount)
+        totalAmount = zeroAmount
+    }
+
     // MARK: Memory lifecycle
 
     public init() { } // NOTE: a do nothing init() to make init() public

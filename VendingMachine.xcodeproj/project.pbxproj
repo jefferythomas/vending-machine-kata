@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B63456A1B9077B4002D5536 /* VendingMachineReturnCoins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6345691B9077B4002D5536 /* VendingMachineReturnCoins.swift */; settings = {ASSET_TAGS = (); }; };
 		7B667C961B8D7AC80036E98A /* VendingMachine.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B667C951B8D7AC80036E98A /* VendingMachine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B667C9D1B8D7AC80036E98A /* VendingMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B667C921B8D7AC80036E98A /* VendingMachine.framework */; };
 		7B667CA21B8D7AC80036E98A /* VendingMachineAcceptCoinsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B667CA11B8D7AC80036E98A /* VendingMachineAcceptCoinsTests.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7B6345691B9077B4002D5536 /* VendingMachineReturnCoins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendingMachineReturnCoins.swift; sourceTree = "<group>"; };
 		7B667C921B8D7AC80036E98A /* VendingMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VendingMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B667C951B8D7AC80036E98A /* VendingMachine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VendingMachine.h; sourceTree = "<group>"; };
 		7B667C971B8D7AC80036E98A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				7B667CA11B8D7AC80036E98A /* VendingMachineAcceptCoinsTests.swift */,
 				7B667CB51B8DCDDE0036E98A /* VendingMachineSelectProductTests.swift */,
 				7BB1183A1B8EB5C0008D9F8A /* VendingMachineMakeChangeTests.swift */,
+				7B6345691B9077B4002D5536 /* VendingMachineReturnCoins.swift */,
 				7B667CA31B8D7AC80036E98A /* Info.plist */,
 			);
 			path = VendingMachineTests;
@@ -217,6 +220,7 @@
 			files = (
 				7BB1183B1B8EB5C0008D9F8A /* VendingMachineMakeChangeTests.swift in Sources */,
 				7B667CA21B8D7AC80036E98A /* VendingMachineAcceptCoinsTests.swift in Sources */,
+				7B63456A1B9077B4002D5536 /* VendingMachineReturnCoins.swift in Sources */,
 				7B667CB61B8DCDDE0036E98A /* VendingMachineSelectProductTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
