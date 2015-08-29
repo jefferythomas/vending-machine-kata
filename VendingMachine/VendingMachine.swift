@@ -46,18 +46,23 @@ public class VendingMachine {
 
         let insertedAmount = amountForCoins(coinsInMachine)
 
-        guard let productPrice = products[name] else {
+        guard let price = prices[name] else {
             assert(false, "\(name) is not a valid product name")
             return
         }
 
-        if insertedAmount < productPrice {
-            messageForNextDisplay = "PRICE \(stringFromAmount(productPrice))"
+        guard let remainingStock = stock[name] where remainingStock > 0 else {
+            messageForNextDisplay = "SOLD OUT"
+            return
+        }
+
+        if insertedAmount < price {
+            messageForNextDisplay = "PRICE \(stringFromAmount(price))"
             return
         }
 
         messageForNextDisplay = "THANK YOU"
-        coinsInCoinReturn = coinsForAmount(insertedAmount - productPrice)
+        coinsInCoinReturn = coinsForAmount(insertedAmount - price)
         coinsInMachine = []
     }
 
@@ -69,7 +74,29 @@ public class VendingMachine {
 
     // MARK: Memory lifecycle
 
-    public init() { } // NOTE: a do nothing init() to make init() public
+    public init() {
+        prices = [
+            "cola" : NSDecimalNumber(string: "1.00"),
+            "chips" : NSDecimalNumber(string: "0.50"),
+            "candy" : NSDecimalNumber(string: "0.65"),
+        ]
+
+        stock = [
+            "cola" : 10,
+            "chips" : 10,
+            "candy" : 10,
+        ]
+    }
+
+    public init(stock: [String : Int]) {
+        prices = [
+            "cola" : NSDecimalNumber(string: "1.00"),
+            "chips" : NSDecimalNumber(string: "0.50"),
+            "candy" : NSDecimalNumber(string: "0.65"),
+        ]
+
+        self.stock = stock
+    }
 
     // MARK: Private
 
@@ -125,12 +152,8 @@ public class VendingMachine {
         return formatter.stringFromNumber(amount)!
     }
 
-    private let products = [
-        "cola" : NSDecimalNumber(string: "1.00"),
-        "chips" : NSDecimalNumber(string: "0.50"),
-        "candy" : NSDecimalNumber(string: "0.65"),
-    ]
-
+    private let prices: [String : NSDecimalNumber]
+    private var stock: [String : Int]
     private var coinsInMachine = [Coin]()
     private var messageForNextDisplay: String? = nil
 
