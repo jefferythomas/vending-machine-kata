@@ -25,4 +25,26 @@ class VendingMachineSoldOutTests: XCTestCase {
         XCTAssertEqual(vendingMachine.display, "$1.00")
     }
 
+    func testSell1ThenSoldOut() {
+        let vendingMachine = VendingMachine(stock: ["cola" : 1])
+
+        vendingMachine.addCoin(.Quarter)
+        vendingMachine.addCoin(.Quarter)
+        vendingMachine.addCoin(.Quarter)
+        vendingMachine.addCoin(.Quarter)
+
+        vendingMachine.selectProductWithName("cola")
+
+        XCTAssertEqual(vendingMachine.display, "THANK YOU")
+
+        vendingMachine.addCoin(.Quarter)
+        vendingMachine.addCoin(.Quarter)
+        vendingMachine.addCoin(.Quarter)
+        vendingMachine.addCoin(.Quarter)
+
+        vendingMachine.selectProductWithName("cola")
+
+        XCTAssertEqual(vendingMachine.display, "SOLD OUT")
+    }
+
 }

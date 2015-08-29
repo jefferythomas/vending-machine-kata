@@ -62,6 +62,7 @@ public class VendingMachine {
         }
 
         messageForNextDisplay = "THANK YOU"
+        stock[name] = remainingStock - 1
         coinsInCoinReturn = coinsForAmount(insertedAmount - price)
         coinsInMachine = []
     }
