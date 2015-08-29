@@ -23,45 +23,51 @@ public class VendingMachine {
         if let message = messageForNextDisplay {
             messageForNextDisplay = nil
             return message
-        } else if totalAmount == zeroAmount {
-            return "INSERT COIN"
-        } else {
-            return stringFromAmount(totalAmount)
         }
+
+        if coinsInMachine.count == 0 {
+            return "INSERT COIN"
+        }
+
+        return stringFromAmount(amountForCoins(coinsInMachine))
     }
 
     public private(set) var coinsInCoinReturn = [Coin]()
 
     public func addCoin(coin: Coin) {
-        guard let amount = amountForCoin(coin) else {
-            // Reject the coin by putting it in the coin return.
+        if coin == .Unknown { // Reject the unknown coin by putting it in the coin return.
             coinsInCoinReturn.append(coin)
             return
         }
 
-        totalAmount = totalAmount + amount
+        messageForNextDisplay = nil
+        coinsInMachine.append(coin)
     }
 
     public func selectProductWithName(name: String) {
         coinsInCoinReturn = [] // Assume the coin return was cleared before selecting a product
+
+        let insertedAmount = amountForCoins(coinsInMachine)
 
         guard let productPrice = products[name] else {
             assert(false, "\(name) is not a valid product name")
             return
         }
 
-        if totalAmount < productPrice {
+        if insertedAmount < productPrice {
             messageForNextDisplay = "PRICE \(stringFromAmount(productPrice))"
-        } else {
-            messageForNextDisplay = "THANK YOU"
-            coinsInCoinReturn = coinsForAmount(totalAmount - productPrice)
-            totalAmount = zeroAmount
+            return
         }
+
+        messageForNextDisplay = "THANK YOU"
+        coinsInCoinReturn = coinsForAmount(insertedAmount - productPrice)
+        coinsInMachine = []
     }
 
     public func returnCoins() {
-        coinsInCoinReturn = coinsForAmount(totalAmount)
-        totalAmount = zeroAmount
+        messageForNextDisplay = nil
+        coinsInCoinReturn = coinsInMachine
+        coinsInMachine = []
     }
 
     // MARK: Memory lifecycle
@@ -69,10 +75,6 @@ public class VendingMachine {
     public init() { } // NOTE: a do nothing init() to make init() public
 
     // MARK: Private
-
-    private func amountForCoins(coins: [Coin]) -> NSDecimalNumber {
-        return coins.reduce(zeroAmount) { total, coin in total + (amountForCoin(coin) ?? zeroAmount) }
-    }
 
     private func coinsForAmount(amount: NSDecimalNumber) -> [Coin] {
         var remainingAmount = amount
@@ -116,6 +118,10 @@ public class VendingMachine {
         return NSDecimalNumber(integer: count) * coinAmount
     }
 
+    private func amountForCoins(coins: [Coin]) -> NSDecimalNumber {
+        return coins.reduce(zeroAmount) { total, coin in total + (amountForCoin(coin) ?? zeroAmount) }
+    }
+
     private func stringFromAmount(amount: NSDecimalNumber) -> String {
         let formatter = NSNumberFormatter()
         formatter.numberStyle = .CurrencyStyle
@@ -128,7 +134,7 @@ public class VendingMachine {
         "candy" : NSDecimalNumber(string: "0.65"),
     ]
 
-    private var totalAmount = zeroAmount
+    private var coinsInMachine = [Coin]()
     private var messageForNextDisplay: String? = nil
 
 }

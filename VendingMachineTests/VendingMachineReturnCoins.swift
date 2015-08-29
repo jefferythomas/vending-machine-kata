@@ -27,4 +27,24 @@ class VendingMachineReturnCoins: XCTestCase {
         XCTAssertEqual(vendingMachine.coinsInCoinReturn, [.Quarter])
     }
 
+    func testReturnedCoinsEqualsInsertedCoins() {
+        vendingMachine.addCoin(.Nickel)
+        vendingMachine.addCoin(.Nickel)
+        vendingMachine.addCoin(.Dime)
+
+        vendingMachine.returnCoins()
+
+        XCTAssertEqual(vendingMachine.display, "INSERT COIN")
+        XCTAssertEqual(vendingMachine.coinsInCoinReturn, [.Nickel, .Nickel, .Dime])
+    }
+
+    func testReturnCoinsInsertCoinMessage() {
+        vendingMachine.addCoin(.Nickel)
+
+        vendingMachine.selectProductWithName("cola")
+        vendingMachine.returnCoins()
+
+        XCTAssertEqual(vendingMachine.display, "INSERT COIN")
+    }
+
 }

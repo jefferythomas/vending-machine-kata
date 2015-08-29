@@ -61,4 +61,12 @@ class VendingMachineAcceptCoinsTests: XCTestCase {
         XCTAssertEqual(vendingMachine.coinsInCoinReturn, [.Unknown])
     }
 
+    func testAcceptCoinMessage() {
+        vendingMachine.addCoin(.Nickel)
+        vendingMachine.selectProductWithName("cola")
+        vendingMachine.addCoin(.Quarter)
+
+        XCTAssertEqual(vendingMachine.display, "$0.30")
+    }
+
 }
