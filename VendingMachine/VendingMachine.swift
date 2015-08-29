@@ -2,9 +2,6 @@
 //  VendingMachine.swift
 //  vending-machine-kata
 //
-//  Created by Jeffery Thomas on 8/25/15.
-//  Copyright © 2015 JLT Source. All rights reserved.
-//
 
 import Foundation
 

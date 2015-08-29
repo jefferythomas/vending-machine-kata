@@ -159,7 +159,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "JLT Source";
+				ORGANIZATIONNAME = "Jeffery Thomas";
 				TargetAttributes = {
 					7B667C911B8D7AC80036E98A = {
 						CreatedOnToolsVersion = 7.0;
@@ -333,7 +333,7 @@
 				INFOPLIST_FILE = VendingMachine/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jltsource.VendingMachine;
+				PRODUCT_BUNDLE_IDENTIFIER = kata.VendingMachine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -353,7 +353,7 @@
 				INFOPLIST_FILE = VendingMachine/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jltsource.VendingMachine;
+				PRODUCT_BUNDLE_IDENTIFIER = kata.VendingMachine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
